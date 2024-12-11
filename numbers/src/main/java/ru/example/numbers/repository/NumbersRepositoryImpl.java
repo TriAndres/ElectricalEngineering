@@ -1,5 +1,6 @@
 package ru.example.numbers.repository;
 
+import org.springframework.stereotype.Repository;
 import ru.example.numbers.model.Numbers;
 
 import java.util.ArrayList;
@@ -7,7 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RepositoryNumbersImpl implements RepositoryNumbers {
+@Repository
+public class NumbersRepositoryImpl implements NumbersRepository {
     private final Map<Long, Numbers> numbersMap = new HashMap<>();
 
     @Override
