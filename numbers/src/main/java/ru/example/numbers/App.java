@@ -1,13 +1,11 @@
-package com.example.numbers;
+package ru.example.numbers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NumbersApplication {
-
+public class App {
     public static void main(String[] args) {
-        SpringApplication.run(NumbersApplication.class, args);
+        SpringApplication.run(App.class, args);
     }
-
 }

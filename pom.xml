@@ -7,6 +7,10 @@
     <groupId>ru.example</groupId>
     <artifactId>ElectricalEngineering</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>numbers</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
