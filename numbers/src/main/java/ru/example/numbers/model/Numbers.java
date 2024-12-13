@@ -2,12 +2,13 @@ package ru.example.numbers.model;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.NonNull;
+import ru.example.numbers.validator.NonNullValidation;
 
 @Data
 @Builder
 public class Numbers {
     private Long id;
-    @NonNull
+
+    @NonNullValidation
     private Long num;
 }

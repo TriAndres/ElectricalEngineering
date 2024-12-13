@@ -1,5 +1,6 @@
 package ru.example.numbers.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -23,13 +24,13 @@ public class NumbersController {
     }
 
     @PostMapping()
-    public Numbers create(@RequestBody Numbers numbers) {
+    public Numbers create(@Valid @RequestBody Numbers numbers) {
         log.info("create(Numbers numbers)");
         return service.create(numbers);
     }
 
     @PutMapping
-    public Numbers update(@RequestBody Numbers newNumbers) {
+    public Numbers update(@Valid @RequestBody Numbers newNumbers) {
         log.info("update(Numbers newNumbers)");
         return service.update(newNumbers);
     }
@@ -41,7 +42,7 @@ public class NumbersController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteId( @PathVariable long id) {
+    public void deleteId(@PathVariable long id) {
         log.info("deleteId(long id)");
         service.deleteId(id);
     }
