@@ -1,4 +1,4 @@
-package ru.example.numbers.service;
+package ru.example.numbers.service.numberService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.example.numbers.exception.NumbersDoesNotExistException;
 import ru.example.numbers.model.Numbers;
 import ru.example.numbers.repository.NumbersRepositoryImpl;
+import ru.example.numbers.service.NumbersService;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,7 +27,7 @@ public class NumbersServiceImpl implements NumbersService {
     public Numbers create(Numbers numbers) {
         numbers.setId(getNextId());
         repository.save(numbers);
-        log.info("Записано число с id={}.",numbers.getId());
+        log.info("Записано число с id={}.", numbers.getId());
         return numbers;
     }
 
@@ -36,7 +37,7 @@ public class NumbersServiceImpl implements NumbersService {
             Numbers old = repository.findById(newNumbers.getId());
             old.setNum(newNumbers.getNum());
             repository.save(old);
-            log.info("Обновлено число с id={}.",old.getId());
+            log.info("Обновлено число с id={}.", old.getId());
             return old;
         }
         log.info("Ошибка при обновлении");
@@ -57,10 +58,11 @@ public class NumbersServiceImpl implements NumbersService {
     public void deleteId(long id) {
         if (repository.findAll().contains(repository.findById(id))) {
             repository.deleteById(id);
-            log.info("Удаление числа с id={}",id);
+            log.info("Удаление числа с id={}", id);
+        } else {
+            log.info("Число c id={} отсутствует", id);
+            throw new NumbersDoesNotExistException("Число отсутствует.");
         }
-        log.info("Число c id={} отсутствует", id);
-        throw new NumbersDoesNotExistException("Число отсутствует.");
     }
 
     private long getNextId() {
